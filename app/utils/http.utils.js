@@ -26,13 +26,35 @@ module.exports = class responseUtilClass {
   }
 
   utilError(_err, _traking, _message) {
-    return this.res.status(CODES.BAD_REQUEST).send({
-      message: _message ? _message : "Servicios no disponibles",
-      errorData: {
-        tracking: _traking,
-        message: _message ? _message : "Servicios no disponibles",
-        data: _err.data ? _err : null,
+    return {
+      gateway: () => {
+        this.res.status(CODES.BAD_REQUEST).send({
+          message: _message ? _message : "Servicios no disponibles",
+          tracking: _traking,
+          errorData: _err.data ? _err : null,
+        });
       },
-    });
+      service: () => {
+        this.res.status(CODES.BAD_REQUEST).send({
+          message: _message ? _message : "Servicios no disponibles",
+          tracking: _traking,
+          error: _err.data ? _err : null,
+        });
+      },
+      core: () => {
+        this.res.status(CODES.BAD_REQUEST).send({
+          message: _message ? _message : "Servicios no disponibles",
+          tracking: _traking,
+          error: _err.data ? _err : null,
+        });
+      },
+    };
+  }
+
+  serviceError(_err, _traking) {
+    return {
+      data: _err.response.data,
+      traking: _traking,
+    };
   }
 };
