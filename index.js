@@ -1,13 +1,21 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./db/app");
+const bodyParser = require("body-parser");
+const multer = require("multer");
+
+const forms = multer();
 
 const app = express();
 const Routes = require("./app/router/index.router");
-// Seteamos rutas Rutas
-Routes(app);
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(forms.any());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Seteamos rutas Rutas
+Routes(app);
 
 const PORT = process.env.PORT || 3000;
 

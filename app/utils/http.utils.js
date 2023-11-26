@@ -25,7 +25,7 @@ module.exports = class responseUtilClass {
     });
   }
 
-  utilError(_err, _traking, _message) {
+  utilError(_err, _traking, _message, _param) {
     return {
       gateway: () => {
         this.res.status(CODES.BAD_REQUEST).send({
@@ -46,6 +46,29 @@ module.exports = class responseUtilClass {
           message: _message ? _message : "Servicios no disponibles",
           tracking: _traking,
           error: _err.data ? _err : null,
+        });
+      },
+      format: () => {
+        const errorFormat = _err.map((data) => {
+          return {
+            message: data.msg,
+            param: data.path,
+            location: data.location,
+          };
+        });
+
+        this.res.status(CODES.BAD_REQUEST).send({
+          message: _message ? _message : "Error de formato",
+          traking: _traking,
+          error: errorFormat,
+        });
+      },
+      data: () => {
+        this.res.status(CODES.BAD_REQUEST).send({
+          param: _param,
+          value: _err,
+          trakin: _traking,
+          message: _message,
         });
       },
     };
