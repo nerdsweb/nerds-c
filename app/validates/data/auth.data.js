@@ -13,9 +13,9 @@ const singUpDataValidate = async (_req, _res, _next) => {
     if (user) {
       throw NERDS_RESPONSE.utilError(
         "username",
-        username,
+        idMember,
         "NCDE002",
-        "Nombre de usuario ya registrado"
+        "Este usuario ya esta registrado"
       ).data();
     }
 

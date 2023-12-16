@@ -43,12 +43,11 @@ const deleteCartController = async (_req, _res) => {
   try {
     const { userId, products } = _req.body;
 
-    const data = await deleteUserProducts(userId, products).catch((error) => {
+    await deleteUserProducts(userId, products).catch((error) => {
       throw error;
     });
     return NERDS_RESPONSE.Ok("NCPS003", "Producto eliminado", true);
   } catch (error) {
-    console.log(error);
     return NERDS_RESPONSE.utilError(error, "NSCE003").core();
   }
 };

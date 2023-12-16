@@ -3,12 +3,12 @@ const { validateResult } = require("../../utils/validator.util");
 const authSingupFormatValidate = [
   body("username")
     .notEmpty()
-    .withMessage("No puede ser un valor vacío")
+    .withMessage("No puede ser un valor vacio")
     .isString()
     .withMessage("Debe ser un conjunto de caracteres"),
   body("idMember")
     .notEmpty()
-    .withMessage("No puede ser un valor vacío")
+    .withMessage("No puede ser un valor vacio")
     .isNumeric()
     .withMessage("Debe ser un numero"),
 
