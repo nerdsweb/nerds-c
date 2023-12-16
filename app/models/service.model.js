@@ -26,6 +26,14 @@ const servicesSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    type: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
     bol_delete: {
       type: Boolean,
       required: true,

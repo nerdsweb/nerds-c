@@ -1,9 +1,12 @@
 const serviceModel = require("../models/service.model");
 
-const getAllServiceService = async () => {
+const getAllServiceService = async (category) => {
   try {
+    const WHERE_CATEGORY = category ? { category: category } : {};
     return await serviceModel.find(
-      {},
+      {
+        ...WHERE_CATEGORY,
+      },
       {
         name: 1,
         description: 1,
