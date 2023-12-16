@@ -38,13 +38,13 @@ const loginController = async (_req, _res) => {
 const verifyTokenData = async (_req, _res) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { token } = _req.body;
+    const { token } = _req.query;
 
     const decoded = jwt.verify(token, "nerdsaaj");
 
     return NERDS_RESPONSE.Ok("NCCS003", "nerds", decoded);
   } catch (error) {
-    return NERDS_RESPONSE.utilError(_err, "NSCE003").core();
+    return NERDS_RESPONSE.utilError(error, "NSCE003").core();
   }
 };
 
