@@ -7,7 +7,7 @@ const registerUserController = async (_req, _res) => {
   try {
     const { username, idMember } = _req.body;
 
-    await createUser(username, idMember).catch((error) => {
+    await createUser(username, +idMember).catch((error) => {
       throw error;
     });
     return NERDS_RESPONSE.Ok("NCCS001", "Registro de usuario exitoso", true);

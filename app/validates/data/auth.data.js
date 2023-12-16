@@ -30,14 +30,14 @@ const loginDataValidate = async (_req, _res, _next) => {
   try {
     const { idMember } = _req.body;
     //? verificamos que el usuario exista
-    const user = await verifyserExistsService(null, idMember).catch((err) => {
+    const user = await verifyserExistsService(null, +idMember).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE003").core();
     });
 
     if (!user) {
       throw NERDS_RESPONSE.utilError(
         "username",
-        username,
+        idMember,
         "NCDE002",
         "Este usuario no existe"
       ).data();
