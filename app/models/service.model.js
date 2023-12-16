@@ -14,6 +14,14 @@ const servicesSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    afiliation: {
+      type: Number,
+      required: true,
+    },
+    characteristics: {
+      type: Array,
+      required: true,
+    },
     lifeTime: {
       type: Number,
       required: true,

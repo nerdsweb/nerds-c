@@ -8,8 +8,9 @@ const getAllServiceService = async () => {
         name: 1,
         description: 1,
         amount: 1,
-        lifetime: 1,
-        _id: 0,
+        afiliation: 1,
+        characteristics: 1,
+        _id: 1,
       }
     );
   } catch (error) {
