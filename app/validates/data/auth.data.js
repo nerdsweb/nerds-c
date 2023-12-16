@@ -6,7 +6,7 @@ const singUpDataValidate = async (_req, _res, _next) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
     const { idMember } = _req.body;
-    const user = await verifyserExistsService(null, idMember).catch((err) => {
+    const user = await verifyserExistsService(null, +idMember).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE001").core();
     });
 
