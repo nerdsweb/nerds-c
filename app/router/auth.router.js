@@ -1,5 +1,8 @@
 const express = require("express");
-const { authSingupFormatValidate } = require("../validates/format/auth.format");
+const {
+  authSingupFormatValidate,
+  authLoginFormatValidate,
+} = require("../validates/format/auth.format");
 const {
   singUpDataValidate,
   loginDataValidate,
@@ -21,7 +24,7 @@ Router.post(
 
 Router.post(
   "/v1/auth/login",
-  authSingupFormatValidate,
+  authLoginFormatValidate,
   loginDataValidate,
   loginController
 );

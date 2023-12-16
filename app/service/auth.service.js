@@ -11,13 +11,13 @@ const usersModel = require("../models/user.model");
  *
  */
 
-const verifyserExistsService = async (_name, _email) => {
+const verifyserExistsService = async (_name, idMember) => {
   try {
-    const EMAIL_WHERE = _email ? { email: _email } : {};
+    const MEMBER_WHERE = idMember ? { idMember: idMember } : {};
     const NAME_WHERE = _name ? { username: _name } : {};
 
     return await usersModel
-      .findOne({ ...EMAIL_WHERE, ...NAME_WHERE })
+      .findOne({ ...MEMBER_WHERE, ...NAME_WHERE })
       .catch((err) => {
         err;
       });
@@ -36,12 +36,13 @@ const verifyserExistsService = async (_name, _email) => {
  *
  */
 
-const createUser = async (_name) => {
+const createUser = async (_name, idMember) => {
   try {
     return await usersModel
       .create([
         {
-          userName: _name.toLowerCase(),
+          username: _name.toLowerCase(),
+          idMember: idMember,
           services: [],
           cupon: [],
           shoppingCart: [],

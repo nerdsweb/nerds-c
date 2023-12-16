@@ -5,8 +5,8 @@ const responseUtilClass = require("../../utils/http.utils");
 const singUpDataValidate = async (_req, _res, _next) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { username } = _req.body;
-    const user = await verifyserExistsService(username).catch((err) => {
+    const { idMember } = _req.body;
+    const user = await verifyserExistsService(null, idMember).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE001").core();
     });
 
@@ -28,9 +28,9 @@ const singUpDataValidate = async (_req, _res, _next) => {
 const loginDataValidate = async (_req, _res, _next) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { username } = _req.body;
+    const { idMember } = _req.body;
     //? verificamos que el usuario exista
-    const user = await verifyserExistsService(username).catch((err) => {
+    const user = await verifyserExistsService(null, idMember).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE003").core();
     });
 

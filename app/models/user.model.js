@@ -6,6 +6,10 @@ const servicesSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    idMember: {
+      type: Number,
+      required: true,
+    },
     shoppingCart: {
       type: Array,
       required: true,

@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 const registerUserController = async (_req, _res) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { username } = _req.body;
+    const { username, idMember } = _req.body;
 
-    await createUser(username).catch((error) => {
+    await createUser(username, idMember).catch((error) => {
       throw error;
     });
     return NERDS_RESPONSE.Ok("NCCS001", "Registro de usuario exitoso", true);
@@ -24,6 +24,7 @@ const loginController = async (_req, _res) => {
     const token = jwt.sign(
       {
         name: user.username,
+        idMember: user.idMember,
         id: user._id.toString(),
       },
       "nerdsaaj"

@@ -6,6 +6,23 @@ const authSingupFormatValidate = [
     .withMessage("No puede ser un valor vacío")
     .isString()
     .withMessage("Debe ser un conjunto de caracteres"),
+  body("idMember")
+    .notEmpty()
+    .withMessage("No puede ser un valor vacío")
+    .isNumeric()
+    .withMessage("Debe ser un numero"),
+
+  (_req, _res, _next) => {
+    validateResult(_req, _res, _next, "NCFE001");
+  },
+];
+
+const authLoginFormatValidate = [
+  body("idMember")
+    .notEmpty()
+    .withMessage("No puede ser un valor vacío")
+    .isNumeric()
+    .withMessage("Debe ser un numero"),
 
   (_req, _res, _next) => {
     validateResult(_req, _res, _next, "NCFE001");
@@ -14,4 +31,5 @@ const authSingupFormatValidate = [
 
 module.exports = {
   authSingupFormatValidate,
+  authLoginFormatValidate,
 };
