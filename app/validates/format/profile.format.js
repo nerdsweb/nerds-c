@@ -1,4 +1,4 @@
-const { body } = require("express-validator");
+const { body, query } = require("express-validator");
 const { validateResult } = require("../../utils/validator.util");
 const { default: mongoose } = require("mongoose");
 
@@ -65,8 +65,20 @@ const getUserFormatValidate = [
   },
 ];
 
+const getUserCartFormatValidate = [
+  query("userId")
+    .notEmpty()
+    .withMessage("No puede ser un valor vacío")
+    .isString()
+    .withMessage("Debe enviar  un producto valido"),
+  (_req, _res, _next) => {
+    validateResult(_req, _res, _next, "NCPFE003");
+  },
+];
+
 module.exports = {
   addToCartFormatValidate,
   deleteToCartFormatValidate,
   getUserFormatValidate,
+  getUserCartFormatValidate,
 };

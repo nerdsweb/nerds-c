@@ -2,7 +2,7 @@ const express = require("express");
 const {
   addToCartFormatValidate,
   deleteToCartFormatValidate,
-  getUserFormatValidate,
+  getUserCartFormatValidate,
 } = require("../validates/format/profile.format");
 const {
   addToCartController,
@@ -28,7 +28,7 @@ Router.post(
 //? listar los productos de un carrito de compras
 Router.get(
   "/v1/profile/getCart",
-  getUserFormatValidate,
+  getUserCartFormatValidate,
   getCartDataValidate,
   getCartController
 );
