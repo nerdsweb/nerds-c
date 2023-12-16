@@ -1,6 +1,6 @@
 {
   "name": "nerds-c",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "core principal nerds web",
   "main": "index.js",
   "scripts": {

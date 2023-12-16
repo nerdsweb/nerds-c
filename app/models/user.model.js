@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const servicesSchema = new mongoose.Schema(
   {
-    userName: {
+    username: {
       type: String,
       required: true,
     },
-    email: {
-      type: String,
+    shoppingCart: {
+      type: Array,
       required: true,
     },
     services: {

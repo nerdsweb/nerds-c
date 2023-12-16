@@ -4,9 +4,9 @@ const responseUtilClass = require("../utils/http.utils");
 const registerUserController = async (_req, _res) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { username, email } = _req.body;
+    const { username } = _req.body;
 
-    await createUser(username, email).catch((error) => {
+    await createUser(username).catch((error) => {
       throw error;
     });
     return NERDS_RESPONSE.Ok("NCCS001", "Registro de usuario exitoso", true);

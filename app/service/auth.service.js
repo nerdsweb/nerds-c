@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const usersModel = require("../models/user.model");
 
 /**
@@ -35,15 +36,15 @@ const verifyserExistsService = async (_name, _email) => {
  *
  */
 
-const createUser = async (_name, _email) => {
+const createUser = async (_name) => {
   try {
     return await usersModel
       .create([
         {
           userName: _name.toLowerCase(),
-          email: _email.toLowerCase(),
           services: [],
           cupon: [],
+          shoppingCart: [],
           bol_delete: false,
         },
       ])

@@ -6,13 +6,6 @@ const authSingupFormatValidate = [
     .withMessage("No puede ser un valor vacío")
     .isString()
     .withMessage("Debe ser un conjunto de caracteres"),
-  body("email")
-    .notEmpty()
-    .withMessage("No puede ser un valor vacío")
-    .isString()
-    .withMessage("Debe ser un conjunto de caracteres")
-    .isEmail()
-    .withMessage("Debe ser una direccion de correo valida"),
 
   (_req, _res, _next) => {
     validateResult(_req, _res, _next, "NCFE001");
