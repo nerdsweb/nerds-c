@@ -14,7 +14,7 @@ const usersModel = require("../models/user.model");
 const verifyserExistsService = async (_name, _email) => {
   try {
     const EMAIL_WHERE = _email ? { email: _email } : {};
-    const NAME_WHERE = _name ? { userName: _name } : {};
+    const NAME_WHERE = _name ? { username: _name } : {};
 
     return await usersModel
       .findOne({ ...EMAIL_WHERE, ...NAME_WHERE })

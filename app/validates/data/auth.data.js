@@ -5,7 +5,7 @@ const responseUtilClass = require("../../utils/http.utils");
 const singUpDataValidate = async (_req, _res, _next) => {
   const NERDS_RESPONSE = new responseUtilClass(_req, _res);
   try {
-    const { username, email } = _req.body;
+    const { username } = _req.body;
     const user = await verifyserExistsService(username).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE001").core();
     });
@@ -19,18 +19,32 @@ const singUpDataValidate = async (_req, _res, _next) => {
       ).data();
     }
 
-    const userEmail = await verifyserExistsService(null, email).catch((err) => {
+    return _next();
+  } catch (error) {
+    return error;
+  }
+};
+
+const loginDataValidate = async (_req, _res, _next) => {
+  const NERDS_RESPONSE = new responseUtilClass(_req, _res);
+  try {
+    const { username } = _req.body;
+    //? verificamos que el usuario exista
+    const user = await verifyserExistsService(username).catch((err) => {
       NERDS_RESPONSE.utilError(err, "NCDE003").core();
     });
 
-    if (userEmail) {
+    if (!user) {
       throw NERDS_RESPONSE.utilError(
-        "email",
-        email,
-        "NCDE004",
-        "Correo electronico  ya registrado"
+        "username",
+        username,
+        "NCDE002",
+        "Este usuario no existe"
       ).data();
     }
+
+    //? seteamos sus valores en una variable
+    _req.body.user = user;
 
     return _next();
   } catch (error) {
@@ -40,4 +54,5 @@ const singUpDataValidate = async (_req, _res, _next) => {
 
 module.exports = {
   singUpDataValidate,
+  loginDataValidate,
 };
