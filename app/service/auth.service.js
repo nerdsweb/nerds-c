@@ -41,7 +41,7 @@ const createUser = async (_name, idMember) => {
     return await usersModel
       .create([
         {
-          username: _name.toLowerCase(),
+          username: `usuario-${idMember}`,
           idMember: idMember,
           services: [],
           cupon: [],

@@ -1,11 +1,6 @@
 const { body } = require("express-validator");
 const { validateResult } = require("../../utils/validator.util");
 const authSingupFormatValidate = [
-  body("username")
-    .notEmpty()
-    .withMessage("No puede ser un valor vacio")
-    .isString()
-    .withMessage("Debe ser un conjunto de caracteres"),
   body("idMember").notEmpty().withMessage("No puede ser un valor vacio"),
 
   (_req, _res, _next) => {
