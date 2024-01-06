@@ -21,7 +21,7 @@ module.exports = class responseUtilClass {
     return this.res.status(CODES.OK).send({
       tracking: tracking,
       message: message,
-      data: data,
+      data: data.data ? data.data : data,
     });
   }
 
